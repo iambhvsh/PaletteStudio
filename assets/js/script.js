@@ -26,28 +26,23 @@ document.addEventListener('DOMContentLoaded', () => {
   function generateColor(baseHue = null, index = 0) {
     const isBaseColor = baseHue === null;
 
-    // Generate sophisticated base hue using multiple color theory principles
     if (isBaseColor) {
       const goldenRatio = 0.618033988749895;
       const phi = 1.618033988749895;
       
       let baseHue = Math.random();
-      // Apply multiple transformations for more refined results
       baseHue += goldenRatio;
       baseHue *= phi;
       baseHue %= 1;
       baseHue *= 360;
     }
 
-    // Enhanced harmonious variations
     const hueVariation = 8 + (Math.random() * 4 - 2);
     const hue = ((baseHue + (index * hueVariation)) + (Math.random() * 3 - 1.5)) % 360;
 
-    // More sophisticated saturation and lightness calculations
     const baseSaturation = 28 + Math.random() * 15;
     const baseLightness = 40 + Math.random() * 20;
 
-    // Apply subtle variations with golden ratio influence
     const saturationVariation = (index * 1.5) * (Math.random() * 0.8 + 0.6);
     const lightnessVariation = (index * 2) * (Math.random() * 0.8 + 0.6);
 
@@ -61,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseHue = Math.random() * 360;
     const newColors = [];
   
-    // Enhanced color generation with better harmony
     for (let i = 0; i < 5; i++) {
       if (!state.lockedColors.has(i)) {
         newColors[i] = generateColor(baseHue, i);
@@ -70,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Advanced color harmony check
     for (let i = 1; i < newColors.length; i++) {
       if (!state.lockedColors.has(i) && !state.lockedColors.has(i - 1)) {
         const prevColor = hslToHex(newColors[i - 1]);
@@ -78,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const brightness1 = calculateBrightness(prevColor);
         const brightness2 = calculateBrightness(currentColor);
       
-        // Ensure better color contrast and harmony
         if (Math.abs(brightness1 - brightness2) < 35 || Math.abs(brightness1 - brightness2) > 120) {
           newColors[i] = generateColor(baseHue, i + Math.random() * 0.5);
         }
@@ -228,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('shareButton').addEventListener('click', async () => {
     try {
       const shareData = {
-        title: 'Color Palette',
+        title: 'PaletteStudio',
         text: 'Check out this color palette!',
         url: window.location.href
       };
