@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>PaletteStudio</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Palette Studio - Create, share, and explore vibrant color palettes for your design projects.">
+  <meta name="keywords" content="Palette Studio, color palettes, design, color generator, creative tool">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://plstudio.vercel.app/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="PaletteStudio">
+  <meta property="og:description" content="Discover a world of color with Palette Studio - the ultimate platform for creating, sharing, and exploring color palettes.">
+  <meta property="og:image" content="https://plstudio.vercel.app/assets/images/og-image.png">
+  <meta property="og:url" content="https://plstudio.vercel.app/">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Palette Studio">
+  <meta name="twitter:description" content="Discover a world of color with Palette Studio - the ultimate platform for creating, sharing, and exploring color palettes.">
+  <meta name="twitter:image" content="https://plstudio.vercel.app/assets/images/og-image.png">
+  
+  <!-- Mobile & Theme -->
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <!-- Icons -->
+  
+  <link rel="shortcut icon" href="/assets/images/logo.webp"/>
+  
+  <!-- Styles and Fonts -->
+  <link rel="stylesheet" href="/assets/css/index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <!-- Structured Data: Schema.org JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Palette Studio",
+      "url": "https://plstudio.vercel.app/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://plstudio.vercel.app/?q={search_term_string}",
+        "query-input": "palette studio=search_term_string"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-content">
+      <h1 class="logo">Palette<span>Studio</span></h1>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <div id="palette"></div>
+  </div>
+  
+  <div class="controls-wrapper">
+    <div class="action-group">
+      <button id="copyPaletteButton" class="tooltip haptics" data-tooltip="Copy All">
+        <span class="material-symbols-rounded">content_copy</span>
+      </button>
+      <button id="shareButton" class="nav-button tooltip haptics" data-tooltip="Share">
+        <span class="material-symbols-rounded">ios_share</span>
+      </button>
+      <a href="/about" class="nav-button tooltip haptics" data-tooltip="About">
+        <span class="material-symbols-rounded">info</span>
+      </a>
+    </div>
+    <button id="generateButton" class="haptics">
+      Generate
+    </button>
+  </div>
+  
+  <script src="/assets/js/script.js"></script>
+</body>
+
+</html>
