@@ -1,0 +1,352 @@
+:root {
+  --system-blue: #0A84FF;
+  --system-gray-light: #1C1C1E;
+  --system-gray-md: #2C2C2E;
+  --system-label: rgba(255, 255, 255, 0.92);
+  --system-bg: #000000;
+  --system-secondary: rgba(255, 255, 255, 0.6);
+}
+
+* {
+  outline: none !important;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif;
+  margin: 0;
+  background: var(--system-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  color: var(--system-label);
+  padding-bottom: calc(80px + env(safe-area-inset-bottom));
+}
+
+.navbar {
+  padding: 0 29px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.98);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.12);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--system-label);
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo span {
+  font-weight: 500;
+  color: var(--system-secondary);
+}
+
+.nav-controls {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.nav-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--system-label);
+  display: grid;
+  place-items: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.nav-button:active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-button .material-symbols-rounded {
+  font-size: 20px;
+  line-height: 1;
+  width: 20px;
+  height: 20px;
+}
+
+.container {
+  flex: 1;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#palette {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 180px);
+}
+
+.color {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 30px;
+  margin-bottom: 0.5px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  animation: colorFadeIn 0.3s cubic-bezier(0.1, 0, 0.2, 1);
+}
+
+@keyframes colorFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.10);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.color-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.color:hover .color-controls {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.color-hex {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: inherit;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 8px 16px;
+  border-radius: 8px;
+  backdrop-filter: blur(15px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.color-hex::after {
+  content: "Tap to copy";
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.color-hex:hover::after {
+  opacity: 0.6;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  backdrop-filter: blur(30px);
+  letter-spacing: -0.01em;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+.keyboard-hint {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: var(--system-secondary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9em;
+  backdrop-filter: blur(20px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body:not(.touch-device) .keyboard-hint {
+  opacity: 0.8;
+}
+
+.color-action {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(0, 0, 0, 0.2);
+  color: inherit;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.color.locked {
+  border-left: 3px solid var(--system-blue);
+}
+
+.controls-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 4px 16px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.98);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  border-top: 0.5px solid rgba(255, 255, 255, 0.12);
+  height: 70px;
+}
+
+.action-group {
+  display: flex;
+  gap: 6px;
+}
+
+#generateButton {
+  padding: 20px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  height: 36px;
+  background: var(--system-blue);
+  color: white;
+  margin-left: auto;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#copyPaletteButton {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--system-label);
+}
+
+#copyPaletteButton .material-symbols-rounded {
+  font-size: 22px;
+  line-height: 1;
+  width: 20px;
+  height: 20px;
+}
+
+.haptics:active {
+  animation: haptic 0.3s ease;
+}
+
+@keyframes haptic {
+  50% { transform: scale(0.98); }
+}
+
+.copy-notification {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  backdrop-filter: blur(30px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1001;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-notification.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 768px) {
+  .color {
+    padding: 24px 16px;
+  }
+  
+  .color-hex {
+    font-size: 15px;
+    padding: 8px 14px;
+  }
+  
+  .controls-wrapper {
+    padding: 4px 12px;
+  }
+  
+  .keyboard-hint {
+    display: none;
+  }
+}
